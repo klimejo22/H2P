@@ -20,6 +20,10 @@ namespace H2P.Nodes.Node
             float distance;
             foreach (GameObject node in NodeSpawner.NodeSpawner.nodes)
             {
+                if (node == gameObject)
+                {
+                    continue;
+                }
                 distance = GetDistance(transform, node.transform);
                 if (distance < shortestDistance)
                 {
@@ -35,7 +39,7 @@ namespace H2P.Nodes.Node
 
             return returnNode;
         }
-        void Awake()
+        void Start()
         {
             nearest = FindNearestNode();
         }
