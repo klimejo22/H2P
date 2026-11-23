@@ -7,7 +7,7 @@ namespace H2P.Nodes.NodeSpawner
     {
         public GameObject nodeObject;
         public static List<GameObject> nodes = new();
-        [SerializeField] private ushort nodeCount;
+        public static ushort nodeCount;
         private GameObject clone;
         void Awake()
         {
