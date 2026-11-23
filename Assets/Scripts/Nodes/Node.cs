@@ -39,6 +39,32 @@ namespace H2P.Nodes.Node
 
             return returnNode;
         }
+        public GameObject FindNearestNode(List<GameObject> seen)
+        {
+            GameObject returnNode = null;
+            float shortestDistance = 99999;
+            float distance;
+            foreach (GameObject node in NodeSpawner.NodeSpawner.nodes)
+            {
+                if (node == gameObject || seen.Contains(node))
+                {
+                    continue;
+                }
+                distance = GetDistance(transform, node.transform);
+                if (distance < shortestDistance)
+                {
+                    returnNode = node;
+                    shortestDistance = distance;
+                }    
+            }
+
+            if (returnNode == null)
+            {
+                returnNode = NodeSpawner.NodeSpawner.nodes[0];
+            }
+
+            return returnNode;
+        }
         void Start()
         {
             nearest = FindNearestNode();
