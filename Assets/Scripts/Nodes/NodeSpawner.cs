@@ -6,7 +6,7 @@ namespace H2P.Nodes.NodeSpawner
     public class NodeSpawner : MonoBehaviour
     {
         public GameObject nodeObject;
-        public static List<GameObject> nodes;
+        public static List<GameObject> nodes = new();
         [SerializeField] private ushort nodeCount;
         private GameObject clone;
         void Awake()
