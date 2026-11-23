@@ -6,7 +6,6 @@ namespace H2P.Nodes.Node
 {
     public class Node : MonoBehaviour
     {
-        public GameObject nearest;
         private float GetDistance(Transform pointA, Transform pointB)
         {
             return math.sqrt(
@@ -65,11 +64,7 @@ namespace H2P.Nodes.Node
 
             return returnNode;
         }
-        void Start()
-        {
-            nearest = FindNearestNode();
-        }
 
-}
+    }
 
 }
