@@ -33,9 +33,10 @@ public class DeerAI : MonoBehaviour
     void Update()
     {
         
-        while (Distance.GetDistance(transform, nextNode.transform) >= 0.5)
+        if (Distance.GetDistance(transform, nextNode.transform) >= 0.5)
         {
             transform.position = Vector3.Lerp(transform.position, nextNode.transform.position, speed);
+            return;
         }
         
         seen.Add(nextNode);
