@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using H2P.Nodes.Node;
 using H2P.Nodes.NodeSpawner;
 using UnityEngine;
+using H2P.Libs.Distance;
 
 public class DeerAI : MonoBehaviour
 {
     public List<GameObject> seen = new();
     private Node currentNode;
+    private GameObject nextNode;
+    [SerializeField] private float speed;
     void Awake()
     {
         enabled = false;
@@ -23,12 +26,24 @@ public class DeerAI : MonoBehaviour
             throw new System.Exception("DeerAI - Node doesnt have the script");
         }
 
-    
+        nextNode = currentNode.FindNearestNode(seen);
     }
 
 
     void Update()
     {
         
+        while (Distance.GetDistance(transform, nextNode.transform) >= 0.5)
+        {
+            transform.position = Vector3.Lerp(transform.position, nextNode.transform.position, speed);
+        }
+        
+        currentNode = nextNode.GetComponent<Node>();
+        if (currentNode == null)
+        {
+            throw new System.Exception("DeerAI - Node doesnt have the script");
+        }
+
+        nextNode = currentNode.FindNearestNode(seen);
     }
 }
