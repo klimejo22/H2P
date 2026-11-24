@@ -38,6 +38,13 @@ public class DeerAI : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, nextNode.transform.position, speed);
         }
         
+        seen.Add(nextNode);
+
+        if (seen.Count == NodeSpawner.nodeCount)
+        {
+            seen = new();
+        }
+        
         currentNode = nextNode.GetComponent<Node>();
         if (currentNode == null)
         {
